@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+// hasPairWithSum checks if there exists a pair of numbers that add up to the target
 func hasPairWithSum(arr []int, target int) bool {
 	left := 0
 	right := len(arr) - 1
@@ -11,6 +12,7 @@ func hasPairWithSum(arr []int, target int) bool {
 	for left < right {
 		sum := arr[left] + arr[right]
 		if sum == target {
+			fmt.Printf("Pair found: %d + %d = %d\n", arr[left], arr[right], target)
 			return true
 		} else if sum < target {
 			left++
@@ -22,12 +24,28 @@ func hasPairWithSum(arr []int, target int) bool {
 }
 
 func main() {
-	arr := []int{1, 2, 4, 7, 11, 15}
-	target := 15
+	fmt.Println(" Welcome to the Two Pointer Sum Finder Tool!")
 
-	if hasPairWithSum(arr, target) {
-		fmt.Println("Found a pair!")
-	} else {
-		fmt.Println("No pair found.")
+	var n int
+	fmt.Print("Enter the number of elements in the sorted array: ")
+	fmt.Scan(&n)
+
+	arr := make([]int, n)
+	fmt.Println("Enter the sorted elements:")
+
+	for i := 0; i < n; i++ {
+		fmt.Printf("Element %d: ", i+1)
+		fmt.Scan(&arr[i])
+	}
+
+	var target int
+	fmt.Print("Enter the target sum you want to find: ")
+	fmt.Scan(&target)
+
+	fmt.Println("\n Searching for a pair...")
+	found := hasPairWithSum(arr, target)
+
+	if !found {
+		fmt.Println(" No pair found that adds up to the target.")
 	}
 }
